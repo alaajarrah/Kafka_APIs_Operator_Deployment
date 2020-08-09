@@ -1,2 +1,2 @@
-kafka::myKafkaSecId ace-consumer XRfuGWXUP1fi
-ace-server::truststorePass dummy asdzUpNfPsnv
+kafka::myKafkaSecId ace-consumer YRsuGTYUP1fi
+ace-server::truststorePass dummy asdzUpGfQsns
