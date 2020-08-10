@@ -6,19 +6,19 @@ This sample deployment project performs below tasks:
   - Create IntegrationServer Configuration CR for Server.conf.yaml
   - Reference these CRs into the IntegrationServer CRD (Kafka_APIs.yaml) and deploy it
 
-The Configuration folder contains the below files:
-# Configurations/es-cert.p12
+The ConfigurationInputs folder contains the below files:
+# ConfigurationInputs/es-cert.p12
 Either PKCS12 or JKS truststores can be configured. Since APIs contained in this project, connect to IBM EventStreams, this es-cert.p12 has been downloaded from IBM EventStreams. Content of this file is base64 encoded and seeded into truststore.yaml before creating the CR for truststore. This step is being done in jenkinsfile during deployment.
 
-# Configurations/kafka_policy.zip
-This is the zipped policy project that may contain one or more policies. In this case, it contains kafka_policy, which is referenced in Kafka Producer and Consumer nodes of the API flows. The kafka_policy project is also checked-into github for the reference: https://github.com/awasthan/kafka_policy.git
+# ConfigurationInputs/kafka_policy.zip
+This is the zipped policy project that may contain one or more policies. In this case, it contains kafka_policy, which is referenced in Kafka Producer and Consumer nodes of the API flows. The kafka_policy project is also checked-into github for the reference: https://github.ibm.com/anand-awasthi/kafka_policy.git
 Content of this file is base64 encoded and seeded into policyProject.yaml before creating the CR for policy project. This step is being done in jenkinsfile during deployment.
 
-# Configurations/setdbparms.txt
+# ConfigurationInputs/setdbparms.txt
 This file contains the parameters for security identifiers. In this case it contains the password to open the truststore and password for the ace-consumer to conenct to Kafka cluster (EventStreams).
 Content of this file is base64 encoded and seeded into setdbparms.yaml before creating the CR for policy project. This step is being done in jenkinsfile during deployment.
 
-# Configurations/server.conf.yaml
+# ConfigurationInputs/server.conf.yaml
 This file contains the configuration parameters for IntegrationServer. In this case, only below configuration has been overwritten under ResourceManagers.JVM
 
 truststoreType: 'PKCS12'
@@ -26,14 +26,14 @@ truststoreType: 'PKCS12'
     truststorePass: 'ace-server::truststorePass'
 Content of this file is base64 encoded and seeded into server.conf.yaml.yaml before creating the CR for policy project. This step is being done in jenkinsfile during deployment.
 
-Below files are the CRDs for Truststore, Policy, Setdbparms and server.conf.yaml. Namespace and Content is being dynamically overwritten in jenkinsfile.
+Below files inside ConfigurationResources folder are the CRDs for Truststore, Policy, Setdbparms and server.conf.yaml. Namespace and Content is being dynamically overwritten in jenkinsfile.
 - policyProject.yaml
 - server.conf.yaml
 - setdbparms.yaml
 - truststore.yaml
 
 Below file is the CRD for IntegrationServer and referenced to the above four CRs:
-- Kafka_APIs.yaml
+- Kafka_APIs_IS.yaml
 
 The jenkinsfile performs below steps:
 - Checks-out the project
