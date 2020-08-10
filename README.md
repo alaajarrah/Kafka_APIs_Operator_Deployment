@@ -11,7 +11,7 @@ The ConfigurationInputs folder contains the below files:
 Either PKCS12 or JKS truststores can be configured. Since APIs contained in this project, connect to IBM EventStreams, this es-cert.p12 has been downloaded from IBM EventStreams. Content of this file is base64 encoded and seeded into truststore.yaml before creating the CR for truststore. This step is being done in jenkinsfile during deployment.
 
 # ConfigurationInputs/kafka_policy.zip
-This is the zipped policy project that may contain one or more policies. In this case, it contains kafka_policy, which is referenced in Kafka Producer and Consumer nodes of the API flows. The kafka_policy project is also checked-into github for the reference: https://github.ibm.com/anand-awasthi/kafka_policy.git
+This is the zipped policy project that may contain one or more policies. In this case, it contains kafka_policy, which is referenced in Kafka Producer and Consumer nodes of the API flows. The kafka_policy project is also checked-into github for the reference: https://github.com/awasthan/kafka_policy.git
 Content of this file is base64 encoded and seeded into policyProject.yaml before creating the CR for policy project. This step is being done in jenkinsfile during deployment.
 
 # ConfigurationInputs/setdbparms.txt
