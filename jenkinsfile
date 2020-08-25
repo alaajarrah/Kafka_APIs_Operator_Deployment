@@ -6,7 +6,7 @@ node () {
 
 wrap([$class: 'Xvfb']) {
 	stage ('Kafka_APIs_Operator_Deployment - Checkout') {
- 	 checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'jenkins-token', url: 'https://github.ibm.com/anand-awasthi/Kafka_APIs_Operator_Deployment.git']]]) 
+ 	 checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'jenkins-token', url: 'https://github.ibm.com/alaajarrah/Kafka_APIs_Operator_Deployment.git']]]) 
 	}
 	stage ('Kafka_APIs_Operator_Deployment - Build') {
  	
