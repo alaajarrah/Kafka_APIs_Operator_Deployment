@@ -29,5 +29,5 @@ spec:
       runtime:
         image: image-registry.openshift-image-registry.svc:5000/integration/replaceWithBakedImage
   tracing:
-    enabled: true
+    enabled: false
     namespace: integration
