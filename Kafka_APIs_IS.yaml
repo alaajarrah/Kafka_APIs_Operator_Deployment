@@ -23,7 +23,7 @@ spec:
     - es-cert.p12
   pod:
     imagePullSecrets:
-    -  name: deployer-dockercfg-hv62v
+    -  name: deployer-dockercfg-jt4vk
     -  name: ibm-entitlement-key
     containers:
       runtime:
