@@ -12,7 +12,7 @@ wrap([$class: 'Xvfb']) {
  	
 // sh label: '', script: '''#!/bin/sh
 
-cd /Users/alaaal-jarrah/Downloads/Customers/Arabbank/Cloud_Paks_PoC/CP4I/Artifacts
+cd /Users/alaaal-jarrah/Downloads/Customers/Arabbank/Cloud_Paks_PoC/CP4I/Artifacts1
 chmod 777 *
 
 cp AB.Middleware.ABSPARK.Channels.Customer.Inquiry.Services_11Aug2020_143527.bar /Users/alaaal-jarrah/.jenkins/jobs
