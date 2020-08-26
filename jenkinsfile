@@ -17,8 +17,8 @@ chmod 777 *
 
 echo 'Workspace is ' + ${WORKSPACE}
 
-cp AB.Middleware.ABSPARK.Channels.Customer.Inquiry.Services_11Aug2020_143527.bar /Users/alaaal-jarrah/.jenkins/workspace/${JOB_NAME}
-cp AB.Middleware.ABSPARK.Channels.MW.AAA.Services.V01_03012019_0830.bar /Users/alaaal-jarrah/.jenkins/workspace/${JOB_NAME}
+cp AB.Middleware.ABSPARK.Channels.Customer.Inquiry.Services_11Aug2020_143527.bar /Users/alaaal-jarrah/.jenkins/workspace/${JOB_NAME}@tmp/
+cp AB.Middleware.ABSPARK.Channels.MW.AAA.Services.V01_03012019_0830.bar /Users/alaaal-jarrah/.jenkins/workspace/${JOB_NAME}/
 cp AB.Middleware.ABSPARK.Common.Applications.AuditLoggerDatabase.Flows_27Jan2019_115437_50AddInst.bar /Users/alaaal-jarrah/.jenkins/workspace/${JOB_NAME}
 cp AB.Middleware.ABSPARK.Common.Applications.AuditLoggerKibana.Flows_25062020_1711.bar /Users/alaaal-jarrah/.jenkins/workspace/${JOB_NAME}
 cp AB.Middleware.ABSPARK.Common.Applications.AuditLoggerRouting.Flows_22Dec2019_132030.bar /Users/alaaal-jarrah/.jenkins/workspace/${JOB_NAME}
