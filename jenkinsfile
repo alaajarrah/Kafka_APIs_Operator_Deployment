@@ -41,8 +41,8 @@ docker push ${OCP_Registry_External_URL}/${Namespace}/${imagename}:${tag}
 
 
 #Create the IntegrationServer Configurations from CR yamls
-chmod 777 -R ConfigurationInputs
-chmod 777 -R ConfigurationResources
+chmod -R 777 ConfigurationInputs
+chmod -R 777 ConfigurationResources
 
 # Create CR for setdbparms
 setdbparms=$(base64 -w 0 ConfigurationInputs/setdbparms.txt) 
