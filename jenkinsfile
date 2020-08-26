@@ -4,22 +4,18 @@ timestamps {
 
 node () {
 
-println "Test Print 0"
-
 //wrap([$class: 'Xvfb']) {
 	stage ('Kafka_APIs_Operator_Deployment - Checkout') {
  	 checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'jenkins-token', url: 'https://github.com/alaajarrah/Kafka_APIs_Operator_Deployment.git']]])
-	 println "Test Print 0-1"
 	}
 	stage ('Kafka_APIs_Operator_Deployment - Build') {
  	
 sh label: '', script: '''#!/bin/sh
-println "Test Print 1"
 
 cd /Users/alaaal-jarrah/Downloads/Customers/Arabbank/Cloud_Paks_PoC/CP4I/Artifacts
 chmod 777 *
 
-println "Test Print 2"
+printlin 'Workspace is ' + ${WORKSPACE}
 
 cp AB.Middleware.ABSPARK.Channels.Customer.Inquiry.Services_11Aug2020_143527.bar /Users/alaaal-jarrah/.jenkins/jobs/${JOB_NAME}/workspace
 cp AB.Middleware.ABSPARK.Channels.MW.AAA.Services.V01_03012019_0830.bar /Users/alaaal-jarrah/.jenkins/jobs/${JOB_NAME}/workspace
@@ -29,6 +25,7 @@ cp AB.Middleware.ABSPARK.Common.Applications.AuditLoggerRouting.Flows_22Dec2019_
 cp AB.Middleware.ABSPARK.Services.Business.Flows.MW.AuthToken.Validate.V01_06012019_1130.bar /Users/alaaal-jarrah/.jenkins/jobs/${JOB_NAME}/workspace
 cp L0_ABIR808_27122017.bar /Users/alaaal-jarrah/.jenkins/jobs/${JOB_NAME}/workspace
 cp L1_BlacklistValidation.bar /Users/alaaal-jarrah/.jenkins/jobs/${JOB_NAME}/workspace
+
 
 cd ${WORKSPACE}
 //oc login ${OCP_API_URL} -u ${OCP_USER} -p ${OCP_PASSWORD} --insecure-skip-tls-verify
