@@ -17,25 +17,27 @@ chmod 777 *
 
 echo 'Workspace is ' + ${WORKSPACE}
 
-cp AB.Middleware.ABSPARK.Channels.Customer.Inquiry.Services_11Aug2020_143527.bar /Users/alaaal-jarrah/.jenkins/jobs/${JOB_NAME}/workspace
-cp AB.Middleware.ABSPARK.Channels.MW.AAA.Services.V01_03012019_0830.bar /Users/alaaal-jarrah/.jenkins/jobs/${JOB_NAME}/workspace
-cp AB.Middleware.ABSPARK.Common.Applications.AuditLoggerDatabase.Flows_27Jan2019_115437_50AddInst.bar /Users/alaaal-jarrah/.jenkins/jobs/${JOB_NAME}/workspace
-cp AB.Middleware.ABSPARK.Common.Applications.AuditLoggerKibana.Flows_25062020_1711.bar /Users/alaaal-jarrah/.jenkins/jobs/${JOB_NAME}/workspace
-cp AB.Middleware.ABSPARK.Common.Applications.AuditLoggerRouting.Flows_22Dec2019_132030.bar /Users/alaaal-jarrah/.jenkins/jobs/${JOB_NAME}/workspace
-cp AB.Middleware.ABSPARK.Services.Business.Flows.MW.AuthToken.Validate.V01_06012019_1130.bar /Users/alaaal-jarrah/.jenkins/jobs/${JOB_NAME}/workspace
-cp L0_ABIR808_27122017.bar /Users/alaaal-jarrah/.jenkins/jobs/${JOB_NAME}/workspace
-cp L1_BlacklistValidation.bar /Users/alaaal-jarrah/.jenkins/jobs/${JOB_NAME}/workspace
+cp AB.Middleware.ABSPARK.Channels.Customer.Inquiry.Services_11Aug2020_143527.bar /Users/alaaal-jarrah/.jenkins/workspace/${JOB_NAME}
+cp AB.Middleware.ABSPARK.Channels.MW.AAA.Services.V01_03012019_0830.bar /Users/alaaal-jarrah/.jenkins/workspace/${JOB_NAME}
+cp AB.Middleware.ABSPARK.Common.Applications.AuditLoggerDatabase.Flows_27Jan2019_115437_50AddInst.bar /Users/alaaal-jarrah/.jenkins/workspace/${JOB_NAME}
+cp AB.Middleware.ABSPARK.Common.Applications.AuditLoggerKibana.Flows_25062020_1711.bar /Users/alaaal-jarrah/.jenkins/workspace/${JOB_NAME}
+cp AB.Middleware.ABSPARK.Common.Applications.AuditLoggerRouting.Flows_22Dec2019_132030.bar /Users/alaaal-jarrah/.jenkins/workspace/${JOB_NAME}
+cp AB.Middleware.ABSPARK.Services.Business.Flows.MW.AuthToken.Validate.V01_06012019_1130.bar /Users/alaaal-jarrah/.jenkins/workspace/${JOB_NAME}
+cp L0_ABIR808_27122017.bar /Users/alaaal-jarrah/.jenkins/workspace/${JOB_NAME}
+cp L1_BlacklistValidation.bar /Users/alaaal-jarrah/.jenkins/workspace/${JOB_NAME}
 
 cd /Users/alaaal-jarrah/Downloads/openshift-origin-client-tools-v3
 ./oc login --token=${OCP_TOKEN} --server=${OCP_API_URL}
 ./oc project ${Namespace}
 
 docker login ${OCP_Registry_External_URL} -u $(./oc whoami) -p $(./oc whoami -t)
+
+cd ${WORKSPACE}
+
 docker build -t ${imagename}:${BUILD_NUMBER} .
 docker tag ${imagename}:${BUILD_NUMBER} ${OCP_Registry_External_URL}/${Namespace}/${imagename}:${tag}
 docker push ${OCP_Registry_External_URL}/${Namespace}/${imagename}:${tag}
 
-cd ${WORKSPACE}
 
 #Create the IntegrationServer Configurations from CR yamls
 chmod 777 -R ConfigurationInputs
