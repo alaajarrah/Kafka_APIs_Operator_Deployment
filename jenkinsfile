@@ -10,7 +10,7 @@ wrap([$class: 'Xvfb']) {
 	}
 	stage ('Kafka_APIs_Operator_Deployment - Build') {
  	
-// sh label: '', script: '''#!/bin/sh
+sh label: '', script: '''#!/bin/sh
 
 cd /Users/alaaal-jarrah/Downloads/Customers/Arabbank/Cloud_Paks_PoC/CP4I/Artifacts
 chmod 777 *
