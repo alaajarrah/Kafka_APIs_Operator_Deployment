@@ -15,8 +15,6 @@ wrap([$class: 'Xvfb']) {
 cd "/Users/alaaal-jarrah/Downloads/Customers/Arabbank/Cloud Paks PoC/CP4I/Artifacts"
 chmod 777 *
 
-echo 'Workspace is ' + ${WORKSPACE}
-
 cp AB.Middleware.ABSPARK.Channels.Customer.Inquiry.Services_11Aug2020_143527.bar /Users/alaaal-jarrah/.jenkins/jobs/${JOB_NAME}/workspace
 cp AB.Middleware.ABSPARK.Channels.MW.AAA.Services.V01_03012019_0830.bar /var/lib/jenkins/jobs/${JOB_NAME}/workspace
 cp AB.Middleware.ABSPARK.Common.Applications.AuditLoggerDatabase.Flows_27Jan2019_115437_50AddInst.bar /var/lib/jenkins/jobs/${JOB_NAME}/workspace
