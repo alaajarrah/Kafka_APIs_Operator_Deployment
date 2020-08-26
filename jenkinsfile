@@ -8,7 +8,8 @@ println "Test Print 0"
 
 wrap([$class: 'Xvfb']) {
 	stage ('Kafka_APIs_Operator_Deployment - Checkout') {
- 	 checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'jenkins-token', url: 'https://github.com/alaajarrah/Kafka_APIs_Operator_Deployment.git']]]) 
+ 	 checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'jenkins-token', url: 'https://github.com/alaajarrah/Kafka_APIs_Operator_Deployment.git']]])
+	 println "Test Print 0-1"
 	}
 	stage ('Kafka_APIs_Operator_Deployment - Build') {
  	
