@@ -30,7 +30,7 @@ cd /Users/alaaal-jarrah/Downloads/openshift-origin-client-tools-v3
 ./oc login --token=${OCP_TOKEN} --server=${OCP_API_URL}
 ./oc project ${Namespace}
 
-docker login ${OCP_Registry_External_URL} -u $(oc whoami) -p $(oc whoami -t)
+docker login ${OCP_Registry_External_URL} -u $(./oc whoami) -p $(./oc whoami -t)
 docker build -t ${imagename}:${BUILD_NUMBER} .
 docker tag ${imagename}:${BUILD_NUMBER} ${OCP_Registry_External_URL}/${Namespace}/${imagename}:${tag}
 docker push ${OCP_Registry_External_URL}/${Namespace}/${imagename}:${tag}
