@@ -33,6 +33,7 @@ cd /Users/alaaal-jarrah/Downloads/openshift-origin-client-tools-v3
 docker login ${OCP_Registry_External_URL} -u $(./oc whoami) -p $(./oc whoami -t)
 
 cd ${WORKSPACE}
+pwd
 
 docker build -t ${imagename}:${BUILD_NUMBER} .
 docker tag ${imagename}:${BUILD_NUMBER} ${OCP_Registry_External_URL}/${Namespace}/${imagename}:${tag}
@@ -42,6 +43,7 @@ docker push ${OCP_Registry_External_URL}/${Namespace}/${imagename}:${tag}
 #Create the IntegrationServer Configurations from CR yamls
 chmod 777 -R ConfigurationInputs
 chmod 777 -R ConfigurationResources
+
 # Create CR for setdbparms
 setdbparms=$(base64 -w 0 ConfigurationInputs/setdbparms.txt) 
 sed -e "s/replace-with-namespace/${Namespace}/" -e "s~replace-with-setdbparms-bas64~${setdbparms}~" ConfigurationResources/setdbparms.yaml > setdbparms-temp.yaml 
