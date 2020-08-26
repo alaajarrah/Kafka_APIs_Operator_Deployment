@@ -10,22 +10,29 @@ wrap([$class: 'Xvfb']) {
 	}
 	stage ('Kafka_APIs_Operator_Deployment - Build') {
  	
-artifactResolver artifacts: [artifact(artifactId: '${ACE_APP1}', extension: 'zip', groupId: 'com.ibm.esb', version: '${ACE_APP1_VERSION}'), artifact(artifactId: '${ACE_APP2}', extension: 'zip', groupId: 'com.ibm.esb', version: '${ACE_APP2_VERSION}')], targetDirectory: '/var/icp-builds/${ACE_APP1}'
-sh label: '', script: '''#!/bin/sh
-cd /var/icp-builds/${ACE_APP1}
-unzip ${ACE_APP1}-${ACE_APP1_VERSION}.zip
+// sh label: '', script: '''#!/bin/sh
+
+cd "/Users/alaaal-jarrah/Downloads/Customers/Arabbank/Cloud Paks PoC/CP4I/Artifacts"
 chmod 777 *
-cp DEV_${ACE_APP1_VERSION}.bar /var/lib/jenkins/jobs/${JOB_NAME}/workspace
-unzip ${ACE_APP2}-${ACE_APP2_VERSION}.zip
-chmod 777 *
-cp DEV_${ACE_APP2_VERSION}.bar /var/lib/jenkins/jobs/${JOB_NAME}/workspace
+
+cp AB.Middleware.ABSPARK.Channels.Customer.Inquiry.Services_11Aug2020_143527.bar /var/lib/jenkins/jobs/${JOB_NAME}/workspace
+cp AB.Middleware.ABSPARK.Channels.MW.AAA.Services.V01_03012019_0830.bar /var/lib/jenkins/jobs/${JOB_NAME}/workspace
+cp AB.Middleware.ABSPARK.Common.Applications.AuditLoggerDatabase.Flows_27Jan2019_115437_50AddInst.bar /var/lib/jenkins/jobs/${JOB_NAME}/workspace
+cp AB.Middleware.ABSPARK.Common.Applications.AuditLoggerKibana.Flows_25062020_1711.bar /var/lib/jenkins/jobs/${JOB_NAME}/workspace
+cp AB.Middleware.ABSPARK.Common.Applications.AuditLoggerRouting.Flows_22Dec2019_132030.bar /var/lib/jenkins/jobs/${JOB_NAME}/workspace
+cp AB.Middleware.ABSPARK.Services.Business.Flows.MW.AuthToken.Validate.V01_06012019_1130.bar /var/lib/jenkins/jobs/${JOB_NAME}/workspace
+cp L0_ABIR808_27122017.bar /var/lib/jenkins/jobs/${JOB_NAME}/workspace
+cp L1_BlacklistValidation.bar /var/lib/jenkins/jobs/${JOB_NAME}/workspace
+
 cd ${WORKSPACE}
-oc login ${OCP_API_URL} -u ${OCP_USER} -p ${OCP_PASSWORD} --insecure-skip-tls-verify
+//oc login ${OCP_API_URL} -u ${OCP_USER} -p ${OCP_PASSWORD} --insecure-skip-tls-verify
+oc login --token=${OCP_TOKEN} --server=${OCP_API_URL}
 oc project ${Namespace}
 docker login ${OCP_Registry_External_URL} -u $(oc whoami) -p $(oc whoami -t)
 docker build -t ${imagename}:${BUILD_NUMBER} .
 docker tag ${imagename}:${BUILD_NUMBER} ${OCP_Registry_External_URL}/${Namespace}/${imagename}:${tag}
 docker push ${OCP_Registry_External_URL}/${Namespace}/${imagename}:${tag}
+
 #Create the IntegrationServer Configurations from CR yamls
 chmod 777 -R ConfigurationInputs
 chmod 777 -R ConfigurationResources
@@ -43,23 +50,24 @@ serverconf=$(base64 -w 0 ConfigurationInputs/server.conf.yaml)
 sed -e "s/replace-with-namespace/${Namespace}/" -e "s~replace-with-serverconf-bas64~${serverconf}~" ConfigurationResources/server.conf.yaml > server.conf-temp.yaml 
 # Deploy the Integration Server
 sed -e "s/replaceIntServerName/${IntegrationServer}/" -e "s/replaceNamespace/${Namespace}/" -e "s/replaceWithBakedImage/${imagename}:${tag}/" Kafka_APIs_IS.yaml > Kafka_APIs-temp.yaml
+
+cd /Users/alaaal-jarrah/Downloads/openshift-origin-client-tools-v3
+
 if test ${DeploymentType} = \'install\'; then
-oc apply -f setdbparms-temp.yaml 
-oc apply -f truststore-temp.yaml
-oc apply -f policyProject-temp.yaml
-oc apply -f server.conf-temp.yaml 
-oc apply -f Kafka_APIs-temp.yaml
+./oc apply -f ${WORKSPACE}/setdbparms-temp.yaml 
+./oc apply -f ${WORKSPACE}/truststore-temp.yaml
+./oc apply -f ${WORKSPACE}/policyProject-temp.yaml
+./oc apply -f ${WORKSPACE}/server.conf-temp.yaml 
+./oc apply -f ${WORKSPACE}/Kafka_APIs-temp.yaml
 else
-oc replace -f setdbparms-temp.yaml 
-oc replace -f truststore-temp.yaml
-oc replace -f policyProject-temp.yaml
-oc replace -f server.conf-temp.yaml 
-oc replace -f Kafka_APIs-temp.yaml
+./oc replace -f ${WORKSPACE}/setdbparms-temp.yaml 
+./oc replace -f ${WORKSPACE}/truststore-temp.yaml
+./oc replace -f ${WORKSPACE}/policyProject-temp.yaml
+./oc replace -f ${WORKSPACE}/server.conf-temp.yaml 
+./oc replace -f ${WORKSPACE}/Kafka_APIs-temp.yaml
 fi
-cd /var/icp-builds
-rm -rf ${ACE_APP1}
-rm -rf ${ACE_APP2}''' 
-	}
+ 
+}
 }
 cleanWs()
 }
