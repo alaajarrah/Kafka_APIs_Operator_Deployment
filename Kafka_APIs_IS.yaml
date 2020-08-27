@@ -17,9 +17,6 @@ spec:
   useCommonServices: true
   version: 11.0.0
   configurations:
-    - server-conf
-    - policy-conf
-    - setdbparms-conf
     - es-cert.p12
   pod:
     imagePullSecrets:
