@@ -51,7 +51,7 @@ sed -e "s/replace-with-namespace/${Namespace}/" -e "s~replace-with-setdbparms-ba
 truststore=$(base64 -b 0 ConfigurationInputs/es-cert.p12)
 sed -e "s/replace-with-namespace/${Namespace}/" -e "s~replace-with-truststore-bas64~${truststore}~" ConfigurationResources/truststore.yaml > truststore-temp.yaml 
 # Create CR for the policy project
-policy=$(base64 -b 0 ConfigurationInputs/kafka_policy.zip)
+policy=$(base64 -b 0 ConfigurationInputs/CP4IPolicyProject.zip)
 sed -e "s/replace-with-namespace/${Namespace}/" -e "s~replace-with-policy-base64~${policy}~" ConfigurationResources/policyProject.yaml > policyProject-temp.yaml 
 # Create CR for server configuration
 serverconf=$(base64 -b 0 ConfigurationInputs/server.conf.yaml)
