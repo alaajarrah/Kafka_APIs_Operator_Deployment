@@ -17,7 +17,7 @@ serverConfVersion: 1
 #defaultQueueManager: ''     # Set non-empty string to specify a default queue manager
 #mqTrustedQueueManager: 'no' # Set to yes to enable MQ communication as a trusted (fastpath) application
 
-#trace: 'none'               # choose 1 of : none|service|diagnostic
+trace: 'none'               # choose 1 of : none|service|diagnostic
 #traceSize: '1G'             # Set the service trace size
 #traceNodeLevel: true        # Enable or disable Trace Nodes
 
