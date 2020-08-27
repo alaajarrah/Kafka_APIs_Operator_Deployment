@@ -16,8 +16,6 @@ spec:
     endpointType: http
   useCommonServices: true
   version: 11.0.0
-  configurations:
-    - es-cert.p12
   pod:
     imagePullSecrets:
     -  name: deployer-dockercfg-jt4vk
