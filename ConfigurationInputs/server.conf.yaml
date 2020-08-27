@@ -7,7 +7,7 @@
 #  - File paths may be taken as absolute, or relative to the integration server's work directory
 #
 # WARNING: Any value specified in the 'overrides/server.conf.yaml' will override values here
-#
+# Start of My config file
 serverConfVersion: 1
 
 #lilPath: ''                 # A list of paths from where User-defined node LIL/JAR files are loaded. (multiple directories are separated by platform path separator)
@@ -381,3 +381,4 @@ RecordReplay:
 
 UserVariables:
   #Thing1: 'value'
+# End of My config file
