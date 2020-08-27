@@ -15,6 +15,7 @@ serverConfVersion: 1
 #deployMode: 'replace'       # Deploy mode: replace | none | manual
 
 #defaultQueueManager: ''     # Set non-empty string to specify a default queue manager
+remoteDefaultQueueManager: '{CP4IPolicyProject}:MQPolicy'
 #mqTrustedQueueManager: 'no' # Set to yes to enable MQ communication as a trusted (fastpath) application
 
 trace: 'none'               # choose 1 of : none|service|diagnostic
