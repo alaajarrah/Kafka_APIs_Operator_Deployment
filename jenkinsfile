@@ -15,7 +15,7 @@ sh label: '', script: '''#!/bin/sh
 cd /Users/alaaal-jarrah/Downloads/Customers/Arabbank/Cloud_Paks_PoC/CP4I/Artifacts
 chmod 777 *
 
-echo 'Workspace is ' + ${WORKSPACE}
+#echo 'Workspace is ' + ${WORKSPACE}
 
 cp AB.Middleware.ABSPARK.Channels.Customer.Inquiry.Services_11Aug2020_143527.bar /Users/alaaal-jarrah/.jenkins/workspace/${JOB_NAME}/
 cp AB.Middleware.ABSPARK.Channels.MW.AAA.Services.V01_03012019_0830.bar /Users/alaaal-jarrah/.jenkins/workspace/${JOB_NAME}/
@@ -26,6 +26,15 @@ cp AB.Middleware.ABSPARK.Services.Business.Flows.MW.AuthToken.Validate.V01_06012
 cp L0_ABIR808_27122017.bar /Users/alaaal-jarrah/.jenkins/workspace/${JOB_NAME}/
 cp L1_BlacklistValidation.bar /Users/alaaal-jarrah/.jenkins/workspace/${JOB_NAME}/
 cp MQPolicy.bar /Users/alaaal-jarrah/.jenkins/workspace/${JOB_NAME}/
+
+cd /Users/alaaal-jarrah/Downloads/Customers/Arabbank/Cloud_Paks_PoC/CP4I/Configuration
+chmod 777 *
+
+cp db2cli.ini /Users/alaaal-jarrah/.jenkins/workspace/${JOB_NAME}/
+cp odbc.ini /Users/alaaal-jarrah/.jenkins/workspace/${JOB_NAME}/
+cp odbcinst.ini /Users/alaaal-jarrah/.jenkins/workspace/${JOB_NAME}/
+cp ibm_data_server_driver_for_odbc_cli.tar.gz /Users/alaaal-jarrah/.jenkins/workspace/${JOB_NAME}/
+
 
 cd /Users/alaaal-jarrah/Downloads/openshift-origin-client-tools-v3
 ./oc login --token=${OCP_TOKEN} --server=${OCP_API_URL}
