@@ -21,6 +21,7 @@ spec:
     - policy-conf
     - setdbparms-conf
     - es-cert.p12
+    - ace-keystore
   pod:
     imagePullSecrets:
     -  name: deployer-dockercfg-jt4vk
