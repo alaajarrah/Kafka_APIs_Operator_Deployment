@@ -48,6 +48,9 @@ chmod -R 777 ConfigurationResources
 # Create CR for setdbparms
 setdbparms=$(base64 -b 0 ConfigurationInputs/setdbparms.txt) 
 sed -e "s/replace-with-namespace/${Namespace}/" -e "s~replace-with-setdbparms-bas64~${setdbparms}~" ConfigurationResources/setdbparms.yaml > setdbparms-temp.yaml 
+# Create CR for KeyStore
+truststore=$(base64 -b 0 ConfigurationInputs/ace-keystore)
+sed -e "s/replace-with-namespace/${Namespace}/" -e "s~replace-with-keystore-bas64~${keystore}~" ConfigurationResources/keystore.yaml > keystore-temp.yaml 
 # Create CR for TrustStore
 truststore=$(base64 -b 0 ConfigurationInputs/es-cert.p12)
 sed -e "s/replace-with-namespace/${Namespace}/" -e "s~replace-with-truststore-bas64~${truststore}~" ConfigurationResources/truststore.yaml > truststore-temp.yaml 
@@ -64,12 +67,14 @@ cd /Users/alaaal-jarrah/Downloads/openshift-origin-client-tools-v3
 
 if test ${DeploymentType} = \'install\'; then
 ./oc apply -f ${WORKSPACE}/setdbparms-temp.yaml 
+./oc apply -f ${WORKSPACE}/keystore-temp.yaml
 ./oc apply -f ${WORKSPACE}/truststore-temp.yaml
 ./oc apply -f ${WORKSPACE}/policyProject-temp.yaml
 ./oc apply -f ${WORKSPACE}/server.conf-temp.yaml 
 ./oc apply -f ${WORKSPACE}/Kafka_APIs-temp.yaml
 else
-./oc replace -f ${WORKSPACE}/setdbparms-temp.yaml 
+./oc replace -f ${WORKSPACE}/setdbparms-temp.yaml
+./oc replace -f ${WORKSPACE}/keystore-temp.yaml
 ./oc replace -f ${WORKSPACE}/truststore-temp.yaml
 ./oc replace -f ${WORKSPACE}/policyProject-temp.yaml
 ./oc replace -f ${WORKSPACE}/server.conf-temp.yaml 
