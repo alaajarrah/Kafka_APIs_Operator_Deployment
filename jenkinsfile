@@ -25,6 +25,7 @@ cp AB.Middleware.ABSPARK.Common.Applications.AuditLoggerRouting.Flows_22Dec2019_
 cp AB.Middleware.ABSPARK.Services.Business.Flows.MW.AuthToken.Validate.V01_06012019_1130.bar /Users/alaaal-jarrah/.jenkins/workspace/${JOB_NAME}/
 cp L0_ABIR808_27122017.bar /Users/alaaal-jarrah/.jenkins/workspace/${JOB_NAME}/
 cp L1_BlacklistValidation.bar /Users/alaaal-jarrah/.jenkins/workspace/${JOB_NAME}/
+cp MQPolicy.bar /Users/alaaal-jarrah/.jenkins/workspace/${JOB_NAME}/
 
 cd /Users/alaaal-jarrah/Downloads/openshift-origin-client-tools-v3
 ./oc login --token=${OCP_TOKEN} --server=${OCP_API_URL}
