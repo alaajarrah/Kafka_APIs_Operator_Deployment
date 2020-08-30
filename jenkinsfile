@@ -49,7 +49,7 @@ chmod -R 777 ConfigurationResources
 setdbparms=$(base64 -b 0 ConfigurationInputs/setdbparms.txt) 
 sed -e "s/replace-with-namespace/${Namespace}/" -e "s~replace-with-setdbparms-bas64~${setdbparms}~" ConfigurationResources/setdbparms.yaml > setdbparms-temp.yaml 
 # Create CR for KeyStore
-truststore=$(base64 -b 0 ConfigurationInputs/ace-keystore)
+keystore=$(base64 -b 0 ConfigurationInputs/ace-keystore)
 sed -e "s/replace-with-namespace/${Namespace}/" -e "s~replace-with-keystore-bas64~${keystore}~" ConfigurationResources/keystore.yaml > keystore-temp.yaml 
 # Create CR for TrustStore
 truststore=$(base64 -b 0 ConfigurationInputs/es-cert.p12)
