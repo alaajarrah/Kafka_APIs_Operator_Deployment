@@ -13,9 +13,3 @@ ADD db2cli.ini /var/mqsi/odbc/
 ENV ODBCINI /var/mqsi/odbc/odbc.ini
 ENV ODBCSYSINI /var/mqsi/odbc/
 ENV DB2CLIINIPATH /var/mqsi/odbc/
-
-#User root
-
-# DB2 prereqs (also installing sharutils package as we use the utility uuencode to generate password - all others are required for the DB2 Client) 
-RUN dpkg --add-architecture i386 && apt-get update && apt-get install -y sharutils binutils libstdc++6:i386 libxml2 libpam0g:i386 && ln -s /lib/i386-linux-gnu/libpam.so.0 /lib/libpam.so.0
-
