@@ -170,9 +170,9 @@ ResourceManagers:
     #jvmMaxHeapSize: 268435456       # maximum JVM heap size in bytes (256MB)
     jvmDebugPort: 8855                 # Set non-zero to activate JVM debug port for Toolkit debugging
     #jvmSystemProperty: ''
-    #keystoreType: ''
-    #keystoreFile: ''
-    #keystorePass: ''
+    keystoreType: 'JKS'
+    keystoreFile: '/home/aceuser/keystores/ace-keystore'
+    keystorePass: 'ace-server::keystorePass'
     truststoreType: 'PKCS12'
     truststoreFile: '/home/aceuser/truststores/es-cert.p12'
     truststorePass: 'ace-server::truststorePass'
